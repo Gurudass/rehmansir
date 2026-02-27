@@ -467,17 +467,5 @@
           });
         });
     </script>
-    <script>
-      // Date format validation (dd,mm,yyyy)
-      document
-        .getElementById("dateFilter")
-        .addEventListener("blur", function () {
-          const regex = /^\d{2},\d{2},\d{4}$/;
-          if (this.value && !regex.test(this.value)) {
-            alert("Please enter date in dd,mm,yyyy format");
-            this.focus();
-          }
-        });
-    </script>
   </body>
 </html>
