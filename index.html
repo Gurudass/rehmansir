@@ -291,6 +291,19 @@
         text-decoration: underline;
         cursor: pointer;
       }
+      .nav-date-filter {
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-date-filter input {
+        height: 26px;
+        padding: 3px 6px;
+        border: 1px solid var(--border-color);
+        border-radius: 3px;
+        font-size: 12px;
+      }
     </style>
   </head>
   <body>
@@ -332,6 +345,14 @@
           <li>Card Details</li>
           <li>Utility</li>
           <li class="menu-more">More <span class="dropdown-arrow">▼</span></li>
+          <div class="nav-date-filter">
+          <input
+            type="text"
+            id="dateFilter"
+            placeholder="dd,mm,yyyy"
+            pattern="\d{2},\d{2},\d{4}"
+          />
+        </div>
         </ul>
       </nav>
 
@@ -444,6 +465,18 @@
             console.log("Updated value:", this.innerText);
             // TODO: send this data to backend via fetch/AJAX
           });
+        });
+    </script>
+    <script>
+      // Date format validation (dd,mm,yyyy)
+      document
+        .getElementById("dateFilter")
+        .addEventListener("blur", function () {
+          const regex = /^\d{2},\d{2},\d{4}$/;
+          if (this.value && !regex.test(this.value)) {
+            alert("Please enter date in dd,mm,yyyy format");
+            this.focus();
+          }
         });
     </script>
   </body>
