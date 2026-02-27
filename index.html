@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IDFC First Bank Collections</title>
     <style>
+      /* === CSS STYLES - Colors and Layout Matching the Image === */
       :root {
-        --idfc-dark-red: #8c1e28;
-        --idfc-light-red: #a53744;
-        --form-bg-pink: #f2e9e9;
+        --idfc-dark-red: #8c1e28; /* Header Color */
+        --idfc-light-red: #a53744; /* Search Button Color */
+        --form-bg-pink: #f2e9e9; /* Light Pinkish/Beige Form Background */
         --body-bg: #f5f5f5;
         --input-bg: #ffffff;
         --border-color: #ccc;
         --text-dark: #333;
         --text-light: #fff;
         --table-header-bg: #e0e0e0;
-        --case-no-link: #1178a9;
+        --case-no-link: #1178a9; /* Blue link color for Case No */
       }
 
       * {
@@ -35,6 +36,7 @@
         width: 100%;
       }
 
+      /* === 1. Header Bar Styles === */
       .header-bar {
         display: flex;
         justify-content: space-between;
@@ -104,8 +106,8 @@
         padding: 2px 4px;
         border-radius: 3px;
       }
-
       .bell {
+        /* Placeholder for bell icon */
         display: block;
         width: 18px;
         height: 18px;
@@ -114,7 +116,6 @@
         position: relative;
         cursor: pointer;
       }
-
       .bell::after {
         content: "🔔";
         position: absolute;
@@ -124,6 +125,7 @@
         color: var(--idfc-dark-red);
       }
 
+      /* === 2. Navigation/Tabs Bar Styles === */
       .nav-bar {
         display: flex;
         align-items: center;
@@ -153,7 +155,6 @@
         list-style: none;
         display: flex;
         margin-left: 15px;
-        align-items: center;
       }
 
       .nav-menu li {
@@ -174,29 +175,15 @@
         font-weight: bold;
       }
 
-      /* NEW DATE FILTER STYLE */
-      .nav-date-filter {
-        margin-left: 15px;
-        display: flex;
-        align-items: center;
-      }
-
-      .nav-date-filter input {
-        height: 26px;
-        padding: 3px 6px;
-        border: 1px solid var(--border-color);
-        border-radius: 3px;
-        font-size: 12px;
-      }
-
+      /* === 3. Search Form Styles === */
       .main-content {
-        padding: 0 15px;
+        padding: 0 15px; /* Adjust padding to sit right below nav */
       }
 
       .search-form-container {
-        background-color: var(--form-bg-pink);
+        background-color: var(--form-bg-pink); /* Crucial color match */
         padding: 15px;
-        margin-top: 1px;
+        margin-top: 1px; /* Remove gap between nav and form */
       }
 
       .form-grid {
@@ -222,6 +209,7 @@
       .form-field-group label {
         margin-bottom: 5px;
         font-weight: 500;
+        color: var(--text-dark);
       }
 
       .form-field-group input,
@@ -233,11 +221,15 @@
         background-color: var(--input-bg);
       }
 
+      .readonly-input {
+        background-color: #f0f0f0;
+      }
+
       .search-button-wrapper {
         flex-grow: 1;
         display: flex;
         justify-content: center;
-        padding-top: 20px;
+        padding-top: 20px; /* Space above the button */
       }
 
       .search-btn {
@@ -255,6 +247,7 @@
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       }
 
+      /* === 4. Results Table Styles === */
       .results-table-container {
         overflow-x: auto;
       }
@@ -268,16 +261,28 @@
 
       .results-table th {
         background-color: var(--table-header-bg);
+        color: var(--text-dark);
+        text-align: left;
         padding: 8px 10px;
         border: 1px solid var(--border-color);
+        white-space: nowrap;
+        cursor: pointer;
+        position: relative;
         font-size: 12px;
         font-weight: bold;
+        vertical-align: bottom;
       }
 
       .results-table td {
         border: 1px solid var(--border-color);
         padding: 8px 10px;
+        white-space: nowrap;
         font-size: 12px;
+      }
+
+      .arrow-down {
+        font-size: 10px;
+        margin-left: 5px;
       }
 
       .case-no {
@@ -288,7 +293,6 @@
       }
     </style>
   </head>
-
   <body>
     <div class="app-container">
       <header class="header-bar">
@@ -317,7 +321,6 @@
           <span class="nav-dots">...</span>
           <span>Collections</span>
         </div>
-
         <ul class="nav-menu">
           <li>Home</li>
           <li>Cases</li>
@@ -328,82 +331,119 @@
           <li>Agency Bulk Utility</li>
           <li>Card Details</li>
           <li>Utility</li>
-          <li class="menu-more">
-            More <span class="dropdown-arrow">▼</span>
-          </li>
+          <li class="menu-more">More <span class="dropdown-arrow">▼</span></li>
         </ul>
-
-        <!-- NEW DATE FILTER -->
-        <div class="nav-date-filter">
-          <input
-            type="text"
-            id="dateFilter"
-            placeholder="dd,mm,yyyy"
-            pattern="\d{2},\d{2},\d{4}"
-          />
-        </div>
       </nav>
-
-      <!-- REST OF YOUR CODE EXACT SAME -->
 
       <main class="main-content">
         <div class="search-form-container">
-          <!-- (Form code unchanged) -->
+          <div class="form-grid">
+            <div class="form-field-group">
+              <label>Account Number</label>
+              <input type="text" placeholder="Search by Account Number" />
+            </div>
+            <div class="form-field-group">
+              <label>Customer Name</label>
+              <input type="text" placeholder="Search by Customer Name" />
+            </div>
+            <div class="form-field-group">
+              <label>Primary Mobile Number</label>
+              <input type="number" />
+            </div>
+            <div class="form-field-group">
+              <label>Product Flag</label>
+              <select>
+                <option>--None--</option>
+              </select>
+            </div>
+
+            <div class="form-field-group">
+              <label>City</label>
+              <input type="text" placeholder="Search by City" />
+            </div>
+            <div class="form-field-group">
+              <label>BOMBUCKET</label>
+              <select>
+                <option>--None--</option>
+              </select>
+            </div>
+            <div class="form-field-group">
+              <label>Case Status</label>
+              <select>
+                <option>--None--</option>
+              </select>
+            </div>
+            <div class="form-field-group">
+              <label>Settlement Status</label>
+              <select>
+                <option>--None--</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-single">
+            <div class="form-field-group">
+              <label>Customer CRN</label>
+              <input type="text" placeholder="Search by CRN Number" />
+            </div>
+            <div class="search-button-wrapper">
+              <button class="search-btn">
+                <span class="search-icon">🔍</span> Search
+              </button>
+            </div>
+          </div>
         </div>
 
         <div class="results-table-container">
           <table class="results-table">
             <thead>
               <tr>
-                <th>Case No</th>
-                <th>Loan Ac...</th>
-                <th>CC/C...</th>
-                <th>Custo...</th>
-                <th>Primary ...</th>
-                <th>Total Dues</th>
-                <th>Loa...</th>
-                <th>Branch</th>
-                <th>Pro...</th>
-                <th>BO...</th>
-                <th>Assigned To</th>
-                <th>Set...</th>
-                <th>Cas...</th>
-                <th>Settle</th>
+                <th>Case No <span class="arrow-down">▾</span></th>
+                <th>Loan Ac... <span class="arrow-down">▾</span></th>
+                <th>CC/C... <span class="arrow-down">▾</span></th>
+                <th>Custo... <span class="arrow-down">▾</span></th>
+                <th>Primary ... <span class="arrow-down">▾</span></th>
+                <th>Total Dues <span class="arrow-down">▾</span></th>
+                <th>Loa... <span class="arrow-down">▾</span></th>
+                <th>Branch <span class="arrow-down">▾</span></th>
+                <th>Pro... <span class="arrow-down">▾</span></th>
+                <th>BO... <span class="arrow-down">▾</span></th>
+                <th>Assigned To <span class="arrow-down">▾</span></th>
+                <th>Set... <span class="arrow-down">▾</span></th>
+                <th>Cas... <span class="arrow-down">▾</span></th>
+                <th>Settle <span class="arrow-down">▾</span></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="case-no">110407218</td>
-                <td>200000006970...</td>
-                <td>CC</td>
-                <td>GAURAV P...</td>
-                <td>DAC5000000...</td>
-                <td>₹1.00</td>
-                <td>...</td>
-                <td>AHMEDABAD</td>
-                <td>FIRST...</td>
-                <td>0</td>
-                <td>Data Lake</td>
-                <td>...</td>
-                <td>Open</td>
-                <td>...</td>
+                <td class="case-no" contenteditable="true">110407218</td>
+                <td contenteditable="true">200000006970...</td>
+                <td contenteditable="true">CC</td>
+                <td contenteditable="true">GAURAV P...</td>
+                <td contenteditable="true">DAC5000000...</td>
+                <td contenteditable="true">₹1.00</td>
+                <td contenteditable="true">...</td>
+                <td contenteditable="true">AHMEDABAD</td>
+                <td contenteditable="true">FIRST...</td>
+                <td contenteditable="true">0</td>
+                <td contenteditable="true">Data Lake</td>
+                <td contenteditable="true">...</td>
+                <td contenteditable="true">Open</td>
+                <td contenteditable="true">...</td>
               </tr>
             </tbody>
           </table>
         </div>
       </main>
     </div>
-
     <script>
-      // Date format validation (dd,mm,yyyy)
       document
-        .getElementById("dateFilter")
-        .addEventListener("blur", function () {
-          const regex = /^\d{2},\d{2},\d{4}$/;
-          if (this.value && !regex.test(this.value)) {
-            alert("Please enter date in dd,mm,yyyy format");
-            this.focus();
-          }
+        .querySelectorAll(".results-table td[contenteditable]")
+        .forEach((cell) => {
+          cell.addEventListener("blur", function () {
+            console.log("Updated value:", this.innerText);
+            // TODO: send this data to backend via fetch/AJAX
+          });
         });
     </script>
   </body>
